@@ -1,5 +1,12 @@
 # LetmeAsk-App
 Project developed in reactJs, through NLW classes on the rocketseat platform.
+
+
+<h1 align="center">
+    <img alt="Letmeask" src=".github/cover.svg" />
+</h1>
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
