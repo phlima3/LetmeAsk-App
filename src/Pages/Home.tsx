@@ -3,6 +3,7 @@ import logoImage from "../Assets/Images/logo.svg";
 import googleImage from "../Assets/Images/google-icon.svg";
 import loginImage from "../Assets/Images/log-in.svg";
 import { Button } from "../Components/Button";
+import { Link } from "react-router-dom";
 
 import "../Styles/auth.scss";
 
@@ -17,18 +18,21 @@ export function Home() {
       <main>
         <div className="main-content">
           <img src={logoImage} alt="letmeask" />
-          <button className="create-room">
-            <img src={googleImage} alt="Logo do Google" />
-            Crie sua sala com o Google
-          </button>
+          <Link to="/rooms/new">
+            <button className="create-room">
+              <img src={googleImage} alt="Logo do Google" />
+              Crie sua sala com o Google
+            </button>
+          </Link>
+
           <div className="separator">ou entre em uma sala</div>
 
           <form>
             <input type="text" placeholder="Digite o código da sala" />
             <Button type="submit">
-            <img src={loginImage} alt="Logo do Google" />
+              <img src={loginImage} alt="Logo do Google" />
               Entrar na sala
-              </Button>
+            </Button>
           </form>
         </div>
       </main>

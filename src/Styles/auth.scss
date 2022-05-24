@@ -52,11 +52,14 @@
     > img {
       align-self: center;
     }
+    a > button {
+      width: 100%;
+    }
 
-    h2{
-      font-size:24px;
+    h2 {
+      font-size: 24px;
       margin: 54px 0 24px;
-      font-family: 'Poppins', sans-serif;
+      font-family: "Poppins", sans-serif;
     }
 
     form {
