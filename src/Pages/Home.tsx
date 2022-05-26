@@ -1,24 +1,23 @@
-import { useContext } from "react";
 import illustrationImg from "../Assets/Images/illustration.svg";
 import logoImage from "../Assets/Images/logo.svg";
 import googleImage from "../Assets/Images/google-icon.svg";
 import loginImage from "../Assets/Images/log-in.svg";
 import { Button } from "../Components/Button";
-import { Link } from "react-router-dom";
-import { auth, firebase } from "../Services/firebase";
-import { TestContext } from "../App";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../App";
 
 import "../Styles/auth.scss";
 
 export function Home() {
-  const { value, setValue } = useContext(TestContext);
+  const navigate = useNavigate();
+  const { user, signInWithGoogle } = useContext(AuthContext);
 
-  function handleCreateRoom() {
-    const provider = new firebase.auth.GoogleAuthProvider();
-
-    auth.signInWithPopup(provider).then((result) => {
-      console.log(result);
-    });
+  async function handleCreateRoom() {
+    if (!user) {
+      await signInWithGoogle();
+    }
+    navigate("rooms/new");
   }
 
   return (
@@ -29,15 +28,12 @@ export function Home() {
         <p>Tire as dúvidas de sua audiência em tempo real</p>
       </aside>
       <main>
-        <h1>{value}</h1>
         <div className="main-content">
           <img src={logoImage} alt="letmeask" />
-          <Link to="/rooms/new">
-            <button className="create-room" onClick={handleCreateRoom}>
-              <img src={googleImage} alt="Logo do Google" />
-              Crie sua sala com o Google
-            </button>
-          </Link>
+          <button className="create-room" onClick={handleCreateRoom}>
+            <img src={googleImage} alt="Logo do Google" />
+            Crie sua sala com o Google
+          </button>
 
           <div className="separator">ou entre em uma sala</div>
 
