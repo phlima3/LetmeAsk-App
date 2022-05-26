@@ -3,7 +3,7 @@ import logoImage from "../Assets/Images/logo.svg";
 import googleImage from "../Assets/Images/google-icon.svg";
 import loginImage from "../Assets/Images/log-in.svg";
 import { Button } from "../Components/Button";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../Hooks/useAuth";
 import "../Styles/auth.scss";
 
@@ -15,7 +15,7 @@ export function Home() {
     if (!user) {
       await signInWithGoogle();
     }
-    navigate("rooms/new");
+    navigate("rooms");
   }
 
   return (
@@ -44,6 +44,7 @@ export function Home() {
           </form>
         </div>
       </main>
+      <Outlet />
     </div>
   );
 }
