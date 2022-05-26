@@ -1,7 +1,5 @@
 import illustrationImg from "../Assets/Images/illustration.svg";
 import logoImage from "../Assets/Images/logo.svg";
-import googleImage from "../Assets/Images/google-icon.svg";
-import loginImage from "../Assets/Images/log-in.svg";
 import { Button } from "../Components/Button";
 import { Link } from "react-router-dom";
 import "../Styles/auth.scss";

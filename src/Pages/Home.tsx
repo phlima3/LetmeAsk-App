@@ -3,7 +3,7 @@ import logoImage from "../Assets/Images/logo.svg";
 import googleImage from "../Assets/Images/google-icon.svg";
 import loginImage from "../Assets/Images/log-in.svg";
 import { Button } from "../Components/Button";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../App";
 
