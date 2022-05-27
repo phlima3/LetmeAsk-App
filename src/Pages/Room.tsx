@@ -1,6 +1,8 @@
 import logoImage from "../Assets/Images/logo.svg";
 import { Button } from "../Components/Button";
 
+import "../Styles/room.scss";
+
 export function Room() {
   return (
     <div id="page-room">
@@ -10,7 +12,7 @@ export function Room() {
           <div>codigo</div>
         </div>
       </header>
-      <main className="content">
+      <main>
         <div className="room-title">
           <h1>Sala React</h1>
           <span>4 Perguntas</span>
