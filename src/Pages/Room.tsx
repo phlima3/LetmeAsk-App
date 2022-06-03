@@ -49,7 +49,7 @@ export function Room() {
   useEffect(() => {
     const roomRef = database.ref(`rooms/${roomID}`);
 
-    roomRef.once("value", (room) => {
+    roomRef.on("value", (room) => {
       const databaseRoom = room.val();
       const firebaseQuestions: FirebaseQuestions = databaseRoom.questions ?? {};
       const parsedQuestions = Object.entries(firebaseQuestions).map(
@@ -114,7 +114,7 @@ export function Room() {
       <main>
         <div className="room-title">
           <h1>Sala {title}</h1>
-          {questions.length > 0 && <span>{questions.length} Perguntas</span>}
+          {questions.length > 0 && <span>{questions.length} Pergunta(s)</span>}
         </div>
         <form onSubmit={handleSendNewQuestion}>
           <textarea
@@ -139,6 +139,7 @@ export function Room() {
           </div>
         </form>
       </main>
+      {JSON.stringify(questions)}
       <ToastContainer />
     </div>
   );
