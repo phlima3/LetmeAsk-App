@@ -52,13 +52,29 @@
         resize: vertical;
         min-height: 130px;
       }
+
       .form-footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-top: 16px;
 
-        span {
+        .user-info {
+          display: flex;
+          align-items: center;
+
+          img {
+            max-width: 32px;
+            border-radius: 50%;
+            margin: 0 8px;
+          }
+          span {
+            color: #29292e;
+            font-size: 14px;
+            font-weight: 500;
+          }
+        }
+        > span {
           font-weight: 500;
           font-size: 14px;
           color: #737380;
@@ -68,6 +84,9 @@
             border: 0;
             text-decoration: underline;
             color: #835afd;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
           }
         }
       }

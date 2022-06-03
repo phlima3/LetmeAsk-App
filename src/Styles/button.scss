@@ -1,5 +1,4 @@
 .button {
-  margin-top: 64px;
   height: 50px;
   border-radius: 8px;
   font-weight: 500;
@@ -21,10 +20,10 @@
     margin-right: 8px;
   }
   &:not(:disabled):hover {
-   filter: brightness(0.9);
+    filter: brightness(0.9);
   }
-  &:disabled{
+  &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
   }
-} 
+}
