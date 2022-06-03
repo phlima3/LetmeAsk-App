@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import logoImage from "../Assets/Images/logo.svg";
@@ -14,12 +14,59 @@ type RoomParams = {
   id: string;
 };
 
+type Question = {
+  id: string;
+  author: {
+    name: string;
+    avatar: string;
+  };
+  content: string;
+  isAnswered: boolean;
+  isHighlighted: boolean;
+};
+type FirebaseQuestions = Record<
+  string,
+  {
+    author: {
+      name: string;
+      avatar: string;
+    };
+    content: string;
+    isAnswered: boolean;
+    isHighlighted: boolean;
+  }
+>;
+
 export function Room() {
   const { user } = useAuth();
   const params = useParams<RoomParams>();
   const [newQuestion, setNewQuestion] = useState("");
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [title, setTitle] = useState("");
 
   const roomID = params.id!;
+
+  useEffect(() => {
+    const roomRef = database.ref(`rooms/${roomID}`);
+
+    roomRef.once("value", (room) => {
+      const databaseRoom = room.val();
+      const firebaseQuestions: FirebaseQuestions = databaseRoom.questions ?? {};
+      const parsedQuestions = Object.entries(firebaseQuestions).map(
+        ([key, value]) => {
+          return {
+            id: key,
+            content: value.content,
+            author: value.author,
+            isHighlighted: value.isHighlighted,
+            isAnswered: value.isAnswered,
+          };
+        }
+      );
+      setTitle(databaseRoom.title);
+      setQuestions(parsedQuestions);
+    });
+  }, [roomID]);
 
   async function handleSendNewQuestion(event: FormEvent) {
     event.preventDefault();
@@ -66,8 +113,8 @@ export function Room() {
       </header>
       <main>
         <div className="room-title">
-          <h1>Sala React</h1>
-          <span>4 Perguntas</span>
+          <h1>Sala {title}</h1>
+          {questions.length > 0 && <span>{questions.length} Perguntas</span>}
         </div>
         <form onSubmit={handleSendNewQuestion}>
           <textarea
