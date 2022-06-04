@@ -1,4 +1,4 @@
-import { Home } from "./Pages/Home";
+import { Home } from "./Pages/Home/index";
 import { NewRoom } from "./Pages/NewRoom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthContextProvider } from "./Contexts/AuthContext";

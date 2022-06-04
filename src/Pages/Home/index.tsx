@@ -1,13 +1,15 @@
 import { FormEvent, useState } from "react";
-import illustrationImg from "../Assets/Images/illustration.svg";
-import logoImage from "../Assets/Images/logo.svg";
-import googleImage from "../Assets/Images/google-icon.svg";
-import loginImage from "../Assets/Images/log-in.svg";
-import { database } from "../Services/firebase";
-import { Button } from "../Components/Button";
+import illustrationImg from "../../Assets/Images/illustration.svg";
+import logoImage from "../../Assets/Images/logo.svg";
+import googleImage from "../../Assets/Images/google-icon.svg";
+import loginImage from "../../Assets/Images/log-in.svg";
+import { database } from "../../Services/firebase";
+import { Button } from "../../Components/Button/index";
 import { Outlet, useNavigate } from "react-router-dom";
-import { useAuth } from "../Hooks/useAuth";
-import "../Styles/auth.scss";
+import { useAuth } from "../../Hooks/useAuth";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "../Home/style.scss";
 
 export function Home() {
   const navigate = useNavigate();
@@ -20,21 +22,34 @@ export function Home() {
     }
     navigate("rooms");
   }
+  function setErrorMessage(errormessage: string) {
+    toast.error(errormessage, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
 
   async function handleJoinRoom(event: FormEvent) {
     event.preventDefault();
 
     if (roomCode.trim() === "") {
+      setErrorMessage("O código da sala não pode estar vazio");
       return;
     }
 
-    const roomRef = await database.ref(`rooms/${roomCode}`).get();
+    const roomRef = await database.ref(`/rooms/${roomCode}`).get();
+    console.log(roomCode);
 
     if (!roomRef.exists()) {
-      alert("Room does not exist");
+      setErrorMessage("Por favor insira um código de sala existente");
       return;
     }
-    navigate(`rooms/${roomCode}`);
+    navigate(`/rooms/${roomCode}`);
   }
 
   return (
@@ -69,6 +84,7 @@ export function Home() {
         </div>
       </main>
       <Outlet />
+      <ToastContainer />
     </div>
   );
 }

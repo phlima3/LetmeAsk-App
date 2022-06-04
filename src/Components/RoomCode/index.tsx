@@ -1,6 +1,6 @@
-import copyImg from "../Assets/Images/copy.svg";
+import copyImg from "../../Assets/Images/copy.svg";
 
-import "../Styles/room-code.scss";
+import "../RoomCode/styles.scss";
 
 type RoomCodeProps = {
   code: string;

@@ -1,14 +1,14 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
-import logoImage from "../Assets/Images/logo.svg";
-import { Button } from "../Components/Button";
-import { RoomCode } from "../Components/RoomCode";
-import { useAuth } from "../Hooks/useAuth";
+import logoImage from "../../Assets/Images/logo.svg";
+import { Button } from "../../Components/Button/index";
+import { RoomCode } from "../../Components/RoomCode";
+import { useAuth } from "../../Hooks/useAuth";
 
-import "../Styles/room.scss";
+import "../Room/styles.scss";
 import "react-toastify/dist/ReactToastify.css";
-import { database } from "../Services/firebase";
+import { database } from "../../Services/firebase";
 
 type RoomParams = {
   id: string;
