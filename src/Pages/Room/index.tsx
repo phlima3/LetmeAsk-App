@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import logoImage from "../../Assets/Images/logo.svg";
@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { database } from "../../Services/firebase";
 import { Question } from "../../Components/Question";
 import { useRoom } from "../../Hooks/useRoom";
+import { Link } from "react-router-dom";
 
 type RoomParams = {
   id: string;
@@ -62,7 +63,9 @@ export function Room() {
     <div id="page-room">
       <header>
         <div className="content">
-          <img src={logoImage} alt="letmeask" />
+          <Link to="/">
+            <img src={logoImage} alt="letmeask" />
+          </Link>
           <RoomCode code={roomID} />
         </div>
       </header>
@@ -85,7 +88,10 @@ export function Room() {
               </div>
             ) : (
               <span>
-                Para enviar uma pergunta, <button>faça seu login</button>
+                Para enviar uma pergunta,{" "}
+                <Link to="/">
+                  <button>faça seu login</button>
+                </Link>
               </span>
             )}
             <Button type="submit" disabled={!user}>

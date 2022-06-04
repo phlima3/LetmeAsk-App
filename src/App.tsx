@@ -3,6 +3,7 @@ import { NewRoom } from "./Pages/NewRoom";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthContextProvider } from "./Contexts/AuthContext";
 import { Room } from "./Pages/Room";
+import { AdminRoom } from "./Pages/AdminRoom";
 
 function App() {
   return (
@@ -15,6 +16,9 @@ function App() {
           <Route path="/rooms">
             <Route index element={<NewRoom />} />
             <Route path=":id" element={<Room />} />
+          </Route>
+          <Route path="/admin/rooms/:id">
+            <Route index element={<AdminRoom />} />
           </Route>
         </Routes>
       </AuthContextProvider>
