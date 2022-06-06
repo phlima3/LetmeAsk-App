@@ -10,6 +10,7 @@ import { Question } from "../../Components/Question";
 import { useRoom } from "../../Hooks/useRoom";
 import { Button } from "../../Components/Button";
 import { Modal } from "../../Components/Modal";
+import { useState } from "react";
 
 type RoomParams = {
   id: string;
@@ -19,9 +20,10 @@ export function AdminRoom() {
   const params = useParams<RoomParams>();
   const roomID = params.id!;
   const { title, questions } = useRoom(roomID);
+  const [modal, setModal] = useState(false);
 
   function handleDeleteQuestion(questionId: string) {
-    return;
+    setModal(!modal);
   }
 
   return (
@@ -58,7 +60,7 @@ export function AdminRoom() {
                     <img src={deleteImage} alt="Remover pergunta" />
                   </button>
                 </Question>
-                <Modal />
+                <Modal isOpen={modal} handleClose={handleDeleteQuestion} />
               </>
             );
           })}
@@ -69,3 +71,4 @@ export function AdminRoom() {
     </div>
   );
 }
+//
