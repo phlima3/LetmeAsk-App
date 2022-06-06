@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import logoImage from "../../Assets/Images/logo.svg";
+import deleteImage from "../../Assets/Images/delete.svg";
 import { RoomCode } from "../../Components/RoomCode";
 
 import "../AdminRoom/styles.scss";
@@ -8,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Question } from "../../Components/Question";
 import { useRoom } from "../../Hooks/useRoom";
 import { Button } from "../../Components/Button";
+import { Modal } from "../../Components/Modal";
 
 type RoomParams = {
   id: string;
@@ -17,6 +19,10 @@ export function AdminRoom() {
   const params = useParams<RoomParams>();
   const roomID = params.id!;
   const { title, questions } = useRoom(roomID);
+
+  function handleDeleteQuestion(questionId: string) {
+    return;
+  }
 
   return (
     <div id="page-room">
@@ -39,11 +45,21 @@ export function AdminRoom() {
         <div className="question-list">
           {questions.map((question) => {
             return (
-              <Question
-                key={question.id}
-                content={question.content}
-                author={question.author}
-              />
+              <>
+                <Question
+                  key={question.id}
+                  content={question.content}
+                  author={question.author}
+                >
+                  <button
+                    type="button"
+                    onClick={() => handleDeleteQuestion(question.id)}
+                  >
+                    <img src={deleteImage} alt="Remover pergunta" />
+                  </button>
+                </Question>
+                <Modal />
+              </>
             );
           })}
         </div>
