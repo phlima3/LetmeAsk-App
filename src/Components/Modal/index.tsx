@@ -5,12 +5,12 @@ import "../Modal/styles.scss";
 const portalRoot = document.querySelector("#portal-root")!;
 
 type ModalType = {
-  //children: React.ReactNode;
   isOpen: boolean;
   handleClose: Function;
+  handleConfirm: Function;
 };
 
-export function Modal({ isOpen, handleClose }: ModalType) {
+export function Modal({ isOpen, handleClose, handleConfirm }: ModalType) {
   return (
     <>
       {isOpen
@@ -26,7 +26,12 @@ export function Modal({ isOpen, handleClose }: ModalType) {
                   <button className="btn-cancel" onClick={() => handleClose()}>
                     Cancelar
                   </button>
-                  <button className="btn-confirm">Sim, encerrar</button>
+                  <button
+                    className="btn-confirm"
+                    onClick={() => handleConfirm()}
+                  >
+                    Sim, encerrar
+                  </button>
                 </div>
               </div>
             </div>,

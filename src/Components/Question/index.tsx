@@ -16,7 +16,7 @@ export function Question({ author, content, children }: QuestionProps) {
       <p>{content}</p>
       <footer>
         <div className="user-info">
-          <img src={author.avatar} alt="Avatar do usuário" />
+          <img src={author.avatar} alt="" />
           <span>{author.name}</span>
         </div>
         <div>{children}</div>

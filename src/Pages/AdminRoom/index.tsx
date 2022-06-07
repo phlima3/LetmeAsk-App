@@ -11,6 +11,7 @@ import { useRoom } from "../../Hooks/useRoom";
 import { Button } from "../../Components/Button";
 import { Modal } from "../../Components/Modal";
 import { useState } from "react";
+import { database } from "../../Services/firebase";
 
 type RoomParams = {
   id: string;
@@ -24,6 +25,9 @@ export function AdminRoom() {
 
   function handleDeleteQuestion(questionId: string) {
     setModal(!modal);
+  }
+  async function handleConfirmDelete(questionId: string) {
+    await database.ref(`rooms/${roomID}/questions/${questionId}`).remove();
   }
 
   return (
@@ -60,7 +64,11 @@ export function AdminRoom() {
                     <img src={deleteImage} alt="Remover pergunta" />
                   </button>
                 </Question>
-                <Modal isOpen={modal} handleClose={handleDeleteQuestion} />
+                <Modal
+                  isOpen={modal}
+                  handleClose={handleDeleteQuestion}
+                  handleConfirm={handleConfirmDelete}
+                />
               </>
             );
           })}
