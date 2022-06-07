@@ -23,11 +23,12 @@ export function AdminRoom() {
   const { title, questions } = useRoom(roomID);
   const [modal, setModal] = useState(false);
 
-  function handleDeleteQuestion(questionId: string) {
+  function handleDeleteQuestion(questionID: string) {
     setModal(!modal);
   }
-  async function handleConfirmDelete(questionId: string) {
-    await database.ref(`rooms/${roomID}/questions/${questionId}`).remove();
+  async function handleConfirmDelete(questionID: string) {
+    await database.ref(`rooms/${roomID}/questions/${questionID}`).remove();
+    setModal(false);
   }
 
   return (
@@ -51,12 +52,8 @@ export function AdminRoom() {
         <div className="question-list">
           {questions.map((question) => {
             return (
-              <>
-                <Question
-                  key={question.id}
-                  content={question.content}
-                  author={question.author}
-                >
+              <div key={question.id}>
+                <Question content={question.content} author={question.author}>
                   <button
                     type="button"
                     onClick={() => handleDeleteQuestion(question.id)}
@@ -67,9 +64,9 @@ export function AdminRoom() {
                 <Modal
                   isOpen={modal}
                   handleClose={handleDeleteQuestion}
-                  handleConfirm={handleConfirmDelete}
+                  handleConfirm={() => handleConfirmDelete(question.id)}
                 />
-              </>
+              </div>
             );
           })}
         </div>
@@ -79,4 +76,3 @@ export function AdminRoom() {
     </div>
   );
 }
-//

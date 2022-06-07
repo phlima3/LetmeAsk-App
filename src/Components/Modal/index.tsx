@@ -27,6 +27,7 @@ export function Modal({ isOpen, handleClose, handleConfirm }: ModalType) {
                     Cancelar
                   </button>
                   <button
+                    type="submit"
                     className="btn-confirm"
                     onClick={() => handleConfirm()}
                   >
