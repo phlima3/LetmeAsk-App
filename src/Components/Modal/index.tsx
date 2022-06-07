@@ -5,12 +5,20 @@ import "../Modal/styles.scss";
 const portalRoot = document.querySelector("#portal-root")!;
 
 type ModalType = {
+  children: React.ReactNode;
+  title: string;
   isOpen: boolean;
   handleClose: Function;
   handleConfirm: Function;
 };
 
-export function Modal({ isOpen, handleClose, handleConfirm }: ModalType) {
+export function Modal({
+  isOpen,
+  handleClose,
+  handleConfirm,
+  title,
+  children,
+}: ModalType) {
   return (
     <>
       {isOpen
@@ -19,8 +27,8 @@ export function Modal({ isOpen, handleClose, handleConfirm }: ModalType) {
               <div className="modal-content">
                 <img src={deleteImg} alt="Icon delete room" />
                 <section>
-                  <h1>Encerrar Sala</h1>
-                  <h3>Tem certeza que deseja encerrar esta sala?</h3>
+                  <h1>{title}</h1>
+                  <h3>{children}</h3>
                 </section>
                 <div className="buttons">
                   <button className="btn-cancel" onClick={() => handleClose()}>

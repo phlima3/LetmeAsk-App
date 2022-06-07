@@ -65,7 +65,10 @@ export function AdminRoom() {
                   isOpen={modal}
                   handleClose={handleDeleteQuestion}
                   handleConfirm={() => handleConfirmDelete(question.id)}
-                />
+                  title="Excluir pergunta"
+                >
+                  Tem certeza que deseja excluir essa pergunta?
+                </Modal>
               </div>
             );
           })}
