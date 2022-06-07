@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import logoImage from "../../Assets/Images/logo.svg";
 import deleteImage from "../../Assets/Images/delete.svg";
@@ -22,6 +22,9 @@ export function AdminRoom() {
   const roomID = params.id!;
   const { title, questions } = useRoom(roomID);
   const [modal, setModal] = useState(false);
+  const [modalRoom, setModalRoom] = useState(false);
+
+  const navigate = useNavigate();
 
   function handleDeleteQuestion(questionID: string) {
     setModal(!modal);
@@ -29,6 +32,15 @@ export function AdminRoom() {
   async function handleConfirmDelete(questionID: string) {
     await database.ref(`rooms/${roomID}/questions/${questionID}`).remove();
     setModal(false);
+  }
+  function handleEndRoom() {
+    setModalRoom(!modalRoom);
+  }
+  async function confirmHandleEndRoom() {
+    await database.ref(`rooms/${roomID}/`).update({
+      endedAt: new Date(),
+    });
+    navigate("/");
   }
 
   return (
@@ -40,7 +52,17 @@ export function AdminRoom() {
           </Link>
           <div>
             <RoomCode code={roomID} />
-            <Button isOutlined>Encerrar Sala</Button>
+            <Button isOutlined onClick={handleEndRoom}>
+              Encerrar Sala
+            </Button>
+            <Modal
+              isOpen={modalRoom}
+              handleClose={handleEndRoom}
+              handleConfirm={() => confirmHandleEndRoom()}
+              title="Encerrar Sala"
+            >
+              Tem certeza que você deseja encerrar a sala?
+            </Modal>
           </div>
         </div>
       </header>
@@ -61,14 +83,16 @@ export function AdminRoom() {
                     <img src={deleteImage} alt="Remover pergunta" />
                   </button>
                 </Question>
-                <Modal
-                  isOpen={modal}
-                  handleClose={handleDeleteQuestion}
-                  handleConfirm={() => handleConfirmDelete(question.id)}
-                  title="Excluir pergunta"
-                >
-                  Tem certeza que deseja excluir essa pergunta?
-                </Modal>
+                {modal ? (
+                  <Modal
+                    isOpen={modal}
+                    handleClose={handleDeleteQuestion}
+                    handleConfirm={() => handleConfirmDelete(question.id)}
+                    title="Excluir pergunta"
+                  >
+                    Tem certeza que deseja excluir essa pergunta?
+                  </Modal>
+                ) : null}
               </div>
             );
           })}

@@ -5,7 +5,7 @@ import "../Modal/styles.scss";
 const portalRoot = document.querySelector("#portal-root")!;
 
 type ModalType = {
-  children: React.ReactNode;
+  children: string;
   title: string;
   isOpen: boolean;
   handleClose: Function;
@@ -39,7 +39,7 @@ export function Modal({
                     className="btn-confirm"
                     onClick={() => handleConfirm()}
                   >
-                    Sim, encerrar
+                    Sim, desejo
                   </button>
                 </div>
               </div>
