@@ -49,6 +49,10 @@ export function Home() {
       setErrorMessage("Por favor insira um código de sala existente");
       return;
     }
+    if (roomRef.val().endedAt) {
+      setErrorMessage("Essa sala foi finaizada!");
+      return;
+    }
     navigate(`/rooms/${roomCode}`);
   }
 
