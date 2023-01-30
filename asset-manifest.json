@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/LetmeAsk-App/static/css/main.3f512ff4.css",
+    "main.js": "/LetmeAsk-App/static/js/main.f0c69123.js",
+    "static/media/illustration.svg": "/LetmeAsk-App/static/media/illustration.8aeb45a42e6eba0127de9de754c01f8c.svg",
+    "static/media/logo.svg": "/LetmeAsk-App/static/media/logo.3cce2a2fa907efa8055d031fbe657811.svg",
+    "static/media/google-icon.svg": "/LetmeAsk-App/static/media/google-icon.0dd780689abbd0d4701b06a372dc13a1.svg",
+    "static/media/copy.svg": "/LetmeAsk-App/static/media/copy.b8f09a77889694caee5f5938c400c062.svg",
+    "index.html": "/LetmeAsk-App/index.html",
+    "static/media/delete.svg": "/LetmeAsk-App/static/media/delete.a8f666096213cd59f3945beddad101b3.svg",
+    "static/media/log-in.svg": "/LetmeAsk-App/static/media/log-in.b69ba097ee0071004ff39b091da3bf9c.svg",
+    "static/media/x.svg": "/LetmeAsk-App/static/media/x.ecfbe1a99d82e7383a64af85bc21d5d5.svg",
+    "static/media/answer.svg": "/LetmeAsk-App/static/media/answer.16004e019bba7b65618abe02293e6787.svg",
+    "static/media/check.svg": "/LetmeAsk-App/static/media/check.8308dd4d172d25c1cdf472b1a4e69a6e.svg",
+    "main.3f512ff4.css.map": "/LetmeAsk-App/static/css/main.3f512ff4.css.map",
+    "main.f0c69123.js.map": "/LetmeAsk-App/static/js/main.f0c69123.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3f512ff4.css",
+    "static/js/main.f0c69123.js"
+  ]
+}
